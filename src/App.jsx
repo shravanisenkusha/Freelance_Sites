@@ -1,14 +1,9 @@
 import React from "react";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <div className="font-sans">
-      <Header />
-      <HomePage />
-      <Footer />
+      <p className="text-5xl font-bold">Its working</p>
     </div>
   );
 }
