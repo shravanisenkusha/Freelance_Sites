@@ -1,0 +1,48 @@
+.pill-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  color: #0369a1;
+  background: #fff;
+  border: 2px solid #0cf;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: .15rem;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: color .3s, box-shadow .3s, background .3s;
+  z-index: 1;
+  box-shadow: 0 2px 12px 0 rgba(0, 204, 255, 0.10);
+}
+.pill-btn .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  /* background: linear-gradient(90deg, #0cf 0%, #0369a1 100%); */
+  /* background-color: #0cf; */
+  background-color: #0369a1;    
+  border-radius: 9999px;
+  z-index: 1;
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.pill-btn:hover .overlay,
+.pill-btn:focus .overlay {
+  width: 100%;
+}
+.pill-btn-text {
+  position: relative;
+  z-index: 2;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .15rem;
+  text-transform: uppercase;
+  transition: color .3s;
+}
+.pill-btn:hover .pill-btn-text,
+.pill-btn:focus .pill-btn-text {
+  color: #fff;
+} 

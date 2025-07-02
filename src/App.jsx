@@ -1,10 +1,24 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Contact from "./pages/Contact";
+import IndividualProduct from "./pages/IndividualProduct";
+import IndividualService from "./pages/IndividualService";
+import Testimonials from "./pages/Testimonials";
 
 function App() {
   return (
-    <div className="font-sans">
-      <p className="text-5xl font-bold">Its working</p>
-    </div>
+    <Router>
+      <div className="font-sans">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/product/:id" element={<IndividualProduct />} />
+          <Route path="/service/:id" element={<IndividualService />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
