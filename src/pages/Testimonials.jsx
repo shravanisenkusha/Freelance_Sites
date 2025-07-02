@@ -4,64 +4,49 @@ import testimonials from "../Testimonials";
 
 const Testimonials = () => {
   const TestimonialCard = ({ testimonial }) => (
-    <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 overflow-hidden">
-      <div className="p-6">
-        {/* Header */}
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-lg overflow-hidden">
-              <img 
-                src="/images/user-placeholder.jpg" 
-                alt={testimonial.name}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'flex';
-                }}
-              />
-              <span style={{ display: 'none' }}>
-                {testimonial.name.charAt(0).toUpperCase()}
-              </span>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 text-lg">{testimonial.name}</h3>
-              <p className="text-sm text-gray-600">{testimonial.role}</p>
-            </div>
+    <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 overflow-hidden flex flex-col md:flex-row p-6 gap-6">
+      {/* Left Side */}
+      <div className="flex flex-col items-center justify-center md:w-1/3 w-full py-4">
+        <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-blue-200 mb-4 bg-blue-50">
+          <img 
+            src={require('../assets/user.jpg')} 
+            alt={testimonial.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <h3 className="font-bold text-gray-900 text-lg text-center">{testimonial.name}</h3>
+        <p className="text-sm text-gray-600 text-center mb-2">{testimonial.role}</p>
+        <div className="flex items-center justify-center space-x-1 mt-1">
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+          ))}
+        </div>
+      </div>
+      {/* Right Side */}
+      <div className="flex-1 flex flex-col justify-center">
+        {/* Project & Year */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 mb-4 flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Code className="w-4 h-4 text-blue-600" />
+            <span className="font-semibold text-blue-800 text-base">{testimonial.project}</span>
           </div>
-          <div className="flex items-center space-x-1">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-            ))}
+          <div className="flex items-center space-x-2">
+            <Calendar className="w-4 h-4 text-gray-500" />
+            <span className="text-sm text-gray-600">{testimonial.year}</span>
           </div>
         </div>
-
-        {/* Project Info */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 mb-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Code className="w-4 h-4 text-blue-600" />
-              <span className="font-medium text-blue-800">{testimonial.project}</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Calendar className="w-4 h-4 text-gray-500" />
-              <span className="text-sm text-gray-600">{testimonial.year}</span>
-            </div>
-          </div>
-        </div>
-
         {/* Feedback */}
         <div className="mb-4">
           <div className="flex items-start space-x-2 mb-3">
             <Quote className="w-4 h-4 text-blue-600 mt-1 flex-shrink-0" />
-            <p className="text-gray-700 text-sm leading-relaxed italic">
+            <p className="text-gray-700 text-base leading-relaxed italic">
               "{testimonial.feedback}"
             </p>
           </div>
         </div>
-
         {/* Skills */}
         <div>
-          <h4 className="text-sm font-medium text-gray-700 mb-2">Skills Developed:</h4>
+          <h4 className="text-sm font-semibold text-gray-700 mb-2">Skills Developed:</h4>
           <div className="flex flex-wrap gap-2">
             {testimonial.skills.map((skill, index) => (
               <span 
@@ -124,7 +109,7 @@ const Testimonials = () => {
       </div>
 
       {/* Testimonials Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-2 py-12">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Intern Testimonials</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -133,7 +118,7 @@ const Testimonials = () => {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
               <TestimonialCard testimonial={testimonial} />
