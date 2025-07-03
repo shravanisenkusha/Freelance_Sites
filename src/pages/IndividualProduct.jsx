@@ -1,133 +1,171 @@
-import React from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
-import { products } from "../data";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import ProductsGrid from "../components/ui/ProductsGrid";
+import React, { useState } from 'react';
+import { MessageSquare, X } from 'lucide-react';
+import nutrigenLogo from '../assets/Nutrigen.png';
+import NutriScreen1 from '../assets/NutriScreen1.png';
+import NutriScreen2 from '../assets/NutriScreen2.png';
+import NutriScreen3 from '../assets/NutriScreen3.png';
+import NutriScreen4 from '../assets/NutriScreen4.png';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
 
-export default function IndividualProduct() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  
-  // Find the product by ID
-  const product = products.find(p => p.id === parseInt(id));
-
-  // If product not found, redirect to home or show error
-  if (!product) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h1>
-          <p className="text-gray-600 mb-6">The product you're looking for doesn't exist.</p>
-          <Link
-            to="/"
-            className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors"
-          >
-            Back to Home
-          </Link>
-        </div>
-      </div>
-    );
+const faqs = [
+  {
+    q: "What is NutriGen?",
+    a: "NutriGen is a smart food scanning app that helps track nutrition by scanning QR codes."
+  },
+  {
+    q: "Is NutriGen free?",
+    a: "Yes, NutriGen is free to use for individual users. API integrations may have usage limits."
+  },
+  {
+    q: "What data sources does it use?",
+    a: "It uses OpenFoodFacts and AI-powered recognition to fetch and analyze food data."
   }
+];
+
+const NutriGenProductPage = () => {
+  const [showChat, setShowChat] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-
-      {/* Product Details */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <nav className="flex mb-8" aria-label="Breadcrumb">
-            <ol className="inline-flex items-center space-x-1 md:space-x-3">
-              <li className="inline-flex items-center">
-                <Link to="/" className="text-gray-700 hover:text-blue-600">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <div className="flex items-center">
-                  <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
-                  </svg>
-                  <span className="ml-1 text-gray-500 md:ml-2">Products</span>
-                </div>
-              </li>
-              <li aria-current="page">
-                <div className="flex items-center">
-                  <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
-                  </svg>
-                  <span className="ml-1 text-gray-500 md:ml-2">{product.name}</span>
-                </div>
-              </li>
-            </ol>
-          </nav>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Product Image */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-96 bg-gray-100 flex items-center justify-center overflow-hidden">
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  className="w-full h-full object-contain p-8"
-                />
-              </div>
-            </div>
-
-            {/* Product Information */}
-            <div className="space-y-8">
-              <div>
-                <h1 className="text-4xl font-bold text-gray-900 mb-4">{product.name}</h1>
-                <p className="text-lg text-gray-600 mb-6">{product.description}</p>
-                <div className="flex items-center space-x-4">
-                  <span className="text-3xl font-bold text-blue-600">{product.price}</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
-                    {product.category}
-                  </span>
-                </div>
-              </div>
-
-              {/* Features */}
-              <div>
-                <h2 className="text-2xl font-semibold text-gray-900 mb-4">Key Features</h2>
-                <ul className="space-y-3">
-                  {product.features.map((feature, index) => (
-                    <li key={index} className="flex items-start space-x-3">
-                      <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                      </svg>
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Call to Action */}
-              <div className="space-y-4">
-                <button className="w-full bg-blue-600 text-white py-4 px-6 rounded-md hover:bg-blue-700 transition-colors font-medium text-lg">
-                  Get Started Now
-                </button>
-                <button className="w-full border border-blue-600 text-blue-600 py-4 px-6 rounded-md hover:bg-blue-50 transition-colors font-medium">
-                  Request Demo
-                </button>
-              </div>
-            </div>
+    <div className="font-sans text-gray-800 bg-white relative">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-[#f7fff8] to-[#eef9ff] py-24 px-6 md:px-16 flex flex-col md:flex-row items-center justify-between gap-12">
+        <div className="md:w-1/2 space-y-6 text-left">
+          <img src={nutrigenLogo} alt="NutriGen Logo" className="mb-4" style={{ width: '90px', height: '100px' }} />
+          <h1 className="text-4xl font-bold text-gray-900 leading-snug">Scan Smarter. Eat Better.</h1>
+          <p className="text-lg text-gray-700">NutriGen helps you track calories and nutrients by simply scanning QR codes on food items.</p>
+          <div className="flex gap-4 mt-4">
+            <a href="#" className="bg-green-700 text-white px-6 py-2 rounded-full shadow hover:bg-green-800 transition">Download on App Store</a>
+            <a href="#" className="border border-green-700 text-green-700 px-6 py-2 rounded-full hover:bg-green-100 transition">Get it on Play Store</a>
           </div>
+        </div>
 
-          {/* Related Products */}
-          <div className="mt-20">
-            <ProductsGrid 
-              products={products.filter(p => p.id !== product.id)}
-              title="Other Products"
-              showFeatures={false}
-            />
-          </div>
+        <div className="md:w-1/2 w-full max-w-md">
+          <Swiper
+            effect={'coverflow'}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={'auto'}
+            loop={true}
+            autoplay={{ delay: 1500, disableOnInteraction: false }}
+            coverflowEffect={{ rotate: 30, stretch: 0, depth: 100, modifier: 1, slideShadows: true }}
+            modules={[EffectCoverflow, Autoplay]}
+            className="rounded-xl shadow-xl"
+          >
+            {[NutriScreen1, NutriScreen2, NutriScreen3, NutriScreen4].map((img, i) => (
+              <SwiperSlide key={i} className="w-64">
+                <img src={img} alt={`Nutri Screen ${i + 1}`} className="rounded-2xl" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </section>
 
-      <Footer />
+      {/* Features Section */}
+      <section className="py-16 px-8 bg-white">
+        <h2 className="text-3xl font-semibold text-center mb-12">Your Smart Food Scanner – Powered by Data</h2>
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {[{ title: "📷 QR Code Scanning", desc: "Instantly fetch food data by scanning QR codes." },
+            { title: "🕢 Calorie & Nutrient Info", desc: "See calories, macros, vitamins, and ingredients." },
+            { title: "📊 Personalized Dashboard", desc: "Track your intake with charts and smart goals." },
+            { title: "🔄 API Integration", desc: "Built on OpenFoodFacts & AI-powered recognition." },
+            { title: "🌐 Works Anywhere", desc: "Supports global food standards and mobile use." },
+            { title: "🔐 Secure & Private", desc: "Data is protected with end-to-end encryption." }].map((f, i) => (
+            <div key={i} className="bg-gray-50 p-6 rounded-xl shadow hover:shadow-md transition">
+              <h3 className="text-xl font-semibold mb-2">{f.title}</h3>
+              <p className="text-gray-600">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Use Case Section */}
+      <section className="py-16 px-8 bg-blue-50">
+        <h2 className="text-3xl font-semibold text-center mb-12">Why NutriGen?</h2>
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {[{ title: "👤 For Individuals", text: "Ideal for fitness tracking, weight management, and health-conscious eating." },
+            { title: "🏢 For Companies", text: "Perfect for employee wellness programs and smart cafeterias." },
+            { title: "💻 For Developers", text: "Use our API to build nutrition-based tools and apps easily." }].map((use, i) => (
+            <div key={i} className="bg-white p-6 rounded-xl shadow hover:shadow-md transition">
+              <h3 className="text-xl font-semibold mb-2">{use.title}</h3>
+              <p>{use.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Tech Section */}
+      <section className="py-16 px-8 bg-white">
+        <h2 className="text-3xl font-semibold text-center mb-12">Tech Behind NutriGen</h2>
+        <ul className="list-disc max-w-3xl mx-auto space-y-3 text-lg pl-6">
+          <li>Real-time API integration with OpenFoodFacts.</li>
+          <li>AI-based food recognition and QR processing.</li>
+          <li>Secure cloud data handling and storage.</li>
+          <li>Nutrition analytics and dietary trend tracking.</li>
+        </ul>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-16 px-8 bg-green-50">
+        <h2 className="text-3xl font-semibold text-center mb-12">What Our Users Say</h2>
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {[{ name: "Vidhi Shah", text: "NutriGen makes calorie tracking effortless! I just scan and go." },
+            { name: "Vrusha Morakhiya", text: "This app helped me manage my diet during my fitness journey. Love the dashboard!" }].map((t, i) => (
+            <div key={i} className="bg-white p-6 rounded-xl shadow">
+              <p className="italic text-gray-700">“{t.text}”</p>
+              <p className="mt-4 font-semibold text-right">— {t.name}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 px-8 text-center bg-gradient-to-r from-green-200 to-blue-200">
+        <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Nutrition?</h2>
+        <p className="mb-6">Start using NutriGen or contact us for integration into your platform.</p>
+        <div className="flex justify-center gap-4">
+          <button className="bg-green-700 text-white px-6 py-2 rounded-xl hover:bg-green-800">Start Using NutriGen</button>
+          <button className="border border-green-700 text-green-700 px-6 py-2 rounded-xl hover:bg-green-100">Contact Us</button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white text-center py-6">
+        <p>&copy; {new Date().getFullYear()} NutriGen | Powered by Senkusha Data Solutions</p>
+      </footer>
+
+      {/* Floating FAQ Chat */}
+      <div className="fixed bottom-6 right-6 z-50">
+        {showChat ? (
+          <div className="w-80 bg-white rounded-xl shadow-xl p-4 border border-gray-300 relative">
+            <button className="absolute top-2 right-2 text-gray-500 hover:text-red-500" onClick={() => setShowChat(false)}>
+              <X size={20} />
+            </button>
+            <h3 className="text-lg font-semibold mb-2">🤖 Ask NutriBot</h3>
+            <ul className="space-y-2">
+              {faqs.map((faq, i) => (
+                <li key={i}>
+                  <button onClick={() => setSelectedAnswer(i)} className="text-left w-full text-sm text-blue-600 hover:underline">
+                    {faq.q}
+                  </button>
+                  {selectedAnswer === i && (
+                    <p className="mt-1 text-gray-700 text-sm">{faq.a}</p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <button onClick={() => setShowChat(true)} className="bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700">
+            <MessageSquare size={24} />
+          </button>
+        )}
+      </div>
     </div>
   );
-}
+};
+
+export default NutriGenProductPage; 
