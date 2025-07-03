@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/Header";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export default function Contact() {
@@ -28,7 +28,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <Navbar />
 
       {/* Contact Section */}
       <section className="py-16">

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { products, services } from "../data";
-import Header from "../components/Header";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ServicesCarausel from "../components/ServicesCarausel";
 import ProductCarausel from "../components/ProductCarausel";
@@ -11,7 +11,7 @@ import HeroHeader from "../components/HeroHeader";
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <Navbar />
       {/* <HeroHeader /> */}
 
       {/* Products Carousel Section */}

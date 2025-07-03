@@ -6,96 +6,61 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav style={styles.navbar}>
-      <div style={styles.logoContainer}>
-        <img src={logo} alt="Senkusha Logo" style={styles.logo} />
+    <nav className="sticky top-0 z-50 bg-white shadow-md px-6 py-3 flex flex-wrap items-center justify-between">
+      {/* Logo */}
+      <div className="flex items-center">
+        <Link to="/">
+          <img src={logo} alt="Senkusha Logo" className="h-10 w-auto" />
+        </Link>
       </div>
 
-      <div style={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
+      {/* Hamburger icon (mobile only) */}
+      <div
+        className="text-2xl cursor-pointer md:hidden"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
         ☰
       </div>
 
+      {/* Navigation Links */}
       <ul
-        style={{
-          ...styles.navLinks,
-          ...(menuOpen ? styles.navLinksMobileOpen : {}),
-        }}
+        className={`${
+          menuOpen ? 'flex' : 'hidden'
+        } md:flex flex-col md:flex-row items-start md:items-center w-full md:w-auto mt-4 md:mt-0 gap-4 md:gap-6 list-none`}
       >
-        <li><Link to="/" style={styles.link}>Home</Link></li>
-        <li><Link to="/services" style={styles.link}>Services</Link></li>
-        <li><Link to="/product" style={styles.link}>Products</Link></li>
-        <li><Link to="/testimonials" style={styles.link}>Testimonials</Link></li> {/* ✅ Added this line */}
-        <li><Link to="/contact" style={styles.link}>Contact Us</Link></li>
-        <li style={styles.btnWrapper}>
-          <button style={styles.button}>Get started</button>
+        <li>
+          <Link to="/" className="text-gray-900 font-medium text-base hover:text-blue-600">
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to="/services" className="text-gray-900 font-medium text-base hover:text-blue-600">
+            Services
+          </Link>
+        </li>
+        <li>
+          <Link to="/product" className="text-gray-900 font-medium text-base hover:text-blue-600">
+            Products
+          </Link>
+        </li>
+        <li>
+          <Link to="/testimonials" className="text-gray-900 font-medium text-base hover:text-blue-600">
+            Testimonials
+          </Link>
+        </li>
+        <li>
+          <Link to="/contact" className="text-gray-900 font-medium text-base hover:text-blue-600">
+            Contact Us
+          </Link>
+        </li>
+        <li className="md:ml-auto">
+          <button className="bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-blue-800">
+            Get started
+          </button>
         </li>
       </ul>
     </nav>
   );
 }
-
-const styles = {
-  navbar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '12px 24px',
-    backgroundColor: 'white',
-    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.05)',
-    position: 'sticky',
-    top: 0,
-    zIndex: 1000,
-    flexWrap: 'wrap',
-  },
-  logoContainer: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  logo: {
-    height: '40px',
-    width: 'auto',
-  },
-  hamburger: {
-    display: 'none',
-    fontSize: '24px',
-    cursor: 'pointer',
-  },
-  navLinks: {
-    display: 'flex',
-    listStyle: 'none',
-    gap: '20px',
-    margin: 0,
-    padding: 0,
-    alignItems: 'center',
-    flexGrow: 1,
-    flexWrap: 'wrap',
-  },
-  navLinksMobileOpen: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    marginTop: '10px',
-    gap: '15px',
-  },
-  link: {
-    textDecoration: 'none',
-    color: '#111',
-    fontWeight: 500,
-    fontSize: '16px',
-  },
-  btnWrapper: {
-    marginLeft: 'auto',
-  },
-  button: {
-    backgroundColor: '#1D4ED8',
-    color: 'white',
-    border: 'none',
-    padding: '8px 18px',
-    borderRadius: '999px',
-    fontSize: '14px',
-    cursor: 'pointer',
-    fontWeight: 600,
-  },
-};
 
 export default Navbar;
