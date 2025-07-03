@@ -39,7 +39,7 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <Link to="/product" className="text-gray-900 font-medium text-base hover:text-blue-600">
+          <Link to="/product/1" className="text-gray-900 font-medium text-base hover:text-blue-600">
             Products
           </Link>
         </li>

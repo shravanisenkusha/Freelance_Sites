@@ -3,6 +3,7 @@ import { Star, Quote, Users, Calendar, Code } from "lucide-react";
 import testimonials from "../Testimonials";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { mentors } from "../data";
 
 const Testimonials = () => {
   const TestimonialCard = ({ testimonial }) => (
@@ -62,6 +63,45 @@ const Testimonials = () => {
       </div>
     </div>
   );
+
+  const MentorImageCard = ({ mentor, idx }) => {
+    // For mentors 0 and 1, show card below; for others, show above
+    const showBelow = idx === 0 || idx === 1;
+    return (
+      <div className="relative group w-36 h-36 md:w-60 md:h-60 flex items-center justify-center -m-14 md:-m-20">
+        {/* Hover Card */}
+        {showBelow ? (
+          <div className="absolute top-full left-1/2 translate-y-2 -translate-x-1/2 z-20 hidden group-hover:flex flex-col items-center">
+            <svg width="32" height="16" viewBox="0 0 32 16" className="-mb-1" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 0L0 16H32L16 0Z" fill="#fcfbf5" stroke="#fdba74"/>
+            </svg>
+            <div className="bg-[#fcfbf5] rounded-xl px-6 py-3 min-w-[200px] text-center">
+              <h3 className="text-xl md:text-2xl font-serif font-bold text-orange-600 mb-1">{mentor.name}</h3>
+              {mentor.post && <p className="text-base text-orange-400 mb-1">{mentor.post}</p>}
+              <p className="text-sm text-orange-400">{mentor.tagline}</p>
+            </div>
+          </div>
+        ) : (
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 z-20 hidden group-hover:flex flex-col items-center">
+            <div className="bg-[#fcfbf5] rounded-xl px-6 py-3 min-w-[200px] text-center">
+              <h3 className="text-xl md:text-2xl font-serif font-bold text-orange-600 mb-1">{mentor.name}</h3>
+              {mentor.post && <p className="text-base text-orange-400 mb-1">{mentor.post}</p>}
+              <p className="text-sm text-orange-400">{mentor.tagline}</p>
+            </div>
+            {/* Arrow */}
+            <svg width="32" height="16" viewBox="0 0 32 16" className="-mt-1" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 16L0 0H32L16 16Z" fill="#fff" stroke="#fdba74"/>
+            </svg>
+          </div>
+        )}
+        <img
+          src={mentor.image}
+          alt={mentor.name}
+          className="w-full h-full object-cover rounded-full shadow-none border-none transition-all duration-300"
+        />
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -127,6 +167,51 @@ const Testimonials = () => {
               <TestimonialCard testimonial={testimonial} />
             </div>
           ))}
+        </div>
+
+        {/* Mentors Introduction Section */}
+        <div className="w-full mt-20 mb-12">
+          <div className="flex flex-col md:flex-row bg-[#fcfbf5] rounded-2xl shadow-lg overflow-hidden">
+            {/* Left Side: Motive, About, Inspiration */}
+            <div className="md:w-[60%] w-full p-8 flex flex-col justify-center bg-[#fcfbf5]">
+              <span className="inline-block bg-yellow-300 text-gray-900 font-bold px-4 py-1 rounded mb-6 text-sm tracking-widest">ABOUT US</span>
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8 leading-tight">We became mentors to help people</h2>
+              <p className="text-lg text-gray-800 mb-6 font-serif italic">
+                "At Senkusha, we believe in investing deeply into a future model of mentorship that reaches every learner with equal intensity. A higher-quality system that takes care for all in a more affordable, accessible fashion. Senkusha represents our best thinking today, at the edge of the new frontier."
+              </p>
+              <p className="text-lg text-gray-800 mb-6 font-serif">
+                We became mentors to help people. Then we built Senkusha to help us do it better.
+              </p>
+              <p className="text-lg text-gray-800 font-serif">
+                Our inspiration comes from the drive to make a difference, to guide, and to empower the next generation of innovators and leaders.
+              </p>
+            </div>
+            {/* Right Side: Mentor Images with Hover Overlay */}
+            <div className="md:w-[40%] w-full bg-[#fcfbf5] flex flex-col justify-center items-center p-8">
+              <div className="grid grid-cols-3 grid-rows-3 gap-0 w-[340px] h-[340px] md:w-[500px] md:h-[500px]">
+                {/* Top-left: Mentor 1 */}
+                <div className="row-start-1 col-start-1 flex items-center justify-center">
+                  <MentorImageCard mentor={mentors[0]} idx={0} />
+                </div>
+                {/* Top-right: Mentor 2 */}
+                <div className="row-start-1 col-start-3 flex items-center justify-center">
+                  <MentorImageCard mentor={mentors[1]} idx={1} />
+                </div>
+                {/* Center: Mentor 5 */}
+                <div className="row-start-2 col-start-2 flex items-center justify-center">
+                  <MentorImageCard mentor={mentors[4]} idx={4} />
+                </div>
+                {/* Bottom-left: Mentor 3 */}
+                <div className="row-start-3 col-start-1 flex items-center justify-center">
+                  <MentorImageCard mentor={mentors[2]} idx={2} />
+                </div>
+                {/* Bottom-right: Mentor 4 */}
+                <div className="row-start-3 col-start-3 flex items-center justify-center">
+                  <MentorImageCard mentor={mentors[3]} idx={3} />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       </div>

@@ -1,6 +1,10 @@
 import DatagptImage from "./assets/Datagpt.png";
 import NutrigenImage from "./assets/Nutrigen.png";
 import ResumeImage from "./assets/Resume.png";
+import UserImage from "./assets/user.jpg";
+import Mentor1 from "./assets/mentor1.jpg";
+import Mentor2 from "./assets/mentor2.jpg";
+import Mentor3 from "./assets/mentor3.jpg";
 
 export const products = [
   {
@@ -198,4 +202,37 @@ export const services = [
     image: "/images/consulting.jpg",
     category: "Consulting"
   }
-]; 
+];
+
+export const mentors = [
+  {
+    name: "Mentor 1",
+    tagline: "Heart of Senkusha",
+    post: undefined,
+    image: Mentor1,
+  },
+  {
+    name: "Mentor 2",
+    tagline: "Brain of Senkusha",
+    post: undefined,
+    image: UserImage,
+  },
+  {
+    name: "Mentor 3",
+    tagline: "Spine of Senkusha",
+    post: undefined,
+    image: UserImage,
+  },
+  {
+    name: "Mentor 4",
+    tagline: "Eyes of Senkusha",
+    post: undefined,
+    image: Mentor3,
+  },
+  {
+    name: "Mentor 5",
+    tagline: "Soul of Senkusha",
+    post: undefined,
+    image: Mentor2,
+  }
+];
