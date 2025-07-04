@@ -20,7 +20,7 @@ const ServiceCard = ({
       className={`
         bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 transform
         ${isActive 
-          ? 'scale-110 shadow-2xl border-2 border-blue-500' 
+          ? 'scale-110 shadow-2xl border-2 border-purple-500' 
           : 'scale-90 opacity-70 hover:scale-95 hover:opacity-90'
         }
         cursor-pointer
@@ -42,7 +42,7 @@ const ServiceCard = ({
         <div className="flex items-start justify-between mb-3">
           <h3 className="text-xl font-semibold text-gray-900">{service.name}</h3>
           {showCategory && (
-            <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium ml-2 flex-shrink-0">
+            <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium ml-2 flex-shrink-0">
               {service.category}
             </span>
           )}

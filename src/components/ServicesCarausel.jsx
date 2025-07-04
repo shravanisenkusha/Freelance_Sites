@@ -129,7 +129,7 @@ const ServicesCarausel = ({ services = [] }) => {
             onClick={() => goToSlide(idx)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
               idx === currentIndex
-                ? "bg-blue-600 scale-125"
+                ? "bg-purple-600 scale-125"
                 : "bg-gray-300 hover:bg-gray-400"
             }`}
             disabled={isAnimating}

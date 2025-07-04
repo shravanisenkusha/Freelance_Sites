@@ -2,9 +2,9 @@
   display: inline-block;
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
-  color: #0369a1;
+  color: #8b5cf6;
   background: #fff;
-  border: 2px solid #0cf;
+  border: 2px solid #8b5cf6;
   text-transform: uppercase;
   font-size: 1rem;
   letter-spacing: .15rem;
@@ -14,7 +14,7 @@
   cursor: pointer;
   transition: color .3s, box-shadow .3s, background .3s;
   z-index: 1;
-  box-shadow: 0 2px 12px 0 rgba(0, 204, 255, 0.10);
+  box-shadow: 0 2px 12px 0 rgba(139, 92, 246, 0.10);
 }
 .pill-btn .overlay {
   position: absolute;
@@ -22,9 +22,7 @@
   left: 0;
   height: 100%;
   width: 0%;
-  /* background: linear-gradient(90deg, #0cf 0%, #0369a1 100%); */
-  /* background-color: #0cf; */
-  background-color: #0369a1;    
+  background-color: #8b5cf6;
   border-radius: 9999px;
   z-index: 1;
   transition: width 0.4s cubic-bezier(0.4,0,0.2,1);

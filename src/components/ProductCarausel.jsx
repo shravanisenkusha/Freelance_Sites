@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, ArrowRight, Star, Zap, TrendingUp } from "lucide-react";
 import demoImage from "../assets/demo.jpg";
+import PillButton from "./ui/PillButton";
 
 const ProductCarausel = ({ products = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -94,7 +95,7 @@ const ProductCarausel = ({ products = [] }) => {
                       {/* Text Content */}
                       <div className="text-white space-y-6">
                         {/* Product Category Badge */}
-                        <div className="inline-flex items-center px-4 py-2 bg-blue-500/30 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-blue-400/50 mb-6 animate-fade-in">
+                        <div className="inline-flex items-center px-4 py-2 bg-purple-500/30 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-purple-400/50 mb-6 animate-fade-in">
                           <Zap className="w-4 h-4 mr-2" />
                           {product.category}
                         </div>
@@ -113,7 +114,7 @@ const ProductCarausel = ({ products = [] }) => {
                         <div className="space-y-3 mb-6 animate-slide-up" style={{ animationDelay: '0.4s' }}>
                           {product.features.slice(0, 3).map((feature, idx) => (
                             <div key={idx} className="flex items-center space-x-3">
-                              <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                              <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
                               <span className="text-white/80 text-sm">{feature}</span>
                             </div>
                           ))}
@@ -122,7 +123,7 @@ const ProductCarausel = ({ products = [] }) => {
                         {/* Price and CTA */}
                         <div className="flex items-center justify-between animate-slide-up" style={{ animationDelay: '0.6s' }}>
                           <div className="flex items-center space-x-4">
-                            <span className="text-3xl font-bold text-blue-300">{product.price}</span>
+                            <span className="text-3xl font-bold text-purple-300">{product.price}</span>
                             <div className="flex items-center space-x-1">
                               <Star className="w-5 h-5 text-yellow-400 fill-current" />
                               <Star className="w-5 h-5 text-yellow-400 fill-current" />
@@ -131,10 +132,9 @@ const ProductCarausel = ({ products = [] }) => {
                               <Star className="w-5 h-5 text-yellow-400 fill-current" />
                             </div>
                           </div>
-                          <button className="group inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                          <PillButton className="text-white border-white">
                             Get Started
-                            <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                          </button>
+                          </PillButton>
                         </div>
                       </div>
 
@@ -151,7 +151,7 @@ const ProductCarausel = ({ products = [] }) => {
                           </div>
                           
                           {/* Floating elements */}
-                          <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-400 rounded-full animate-pulse"></div>
+                          <div className="absolute -top-4 -right-4 w-8 h-8 bg-purple-400 rounded-full animate-pulse"></div>
                           <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-indigo-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
                         </div>
                       </div>
@@ -166,7 +166,7 @@ const ProductCarausel = ({ products = [] }) => {
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-blue-500/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-500/50 transition-all duration-300 transform hover:scale-110 z-20 border border-blue-400/50"
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-purple-500/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-purple-500/50 transition-all duration-300 transform hover:scale-110 z-20 border border-purple-400/50"
           disabled={isAnimating}
         >
           <ChevronLeft className="w-6 h-6" />
@@ -174,7 +174,7 @@ const ProductCarausel = ({ products = [] }) => {
         
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-blue-500/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-blue-500/50 transition-all duration-300 transform hover:scale-110 z-20 border border-blue-400/50"
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-purple-500/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-purple-500/50 transition-all duration-300 transform hover:scale-110 z-20 border border-purple-400/50"
           disabled={isAnimating}
         >
           <ChevronRight className="w-6 h-6" />
@@ -188,7 +188,7 @@ const ProductCarausel = ({ products = [] }) => {
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentIndex 
-                  ? 'bg-blue-400 scale-125' 
+                  ? 'bg-purple-400 scale-125' 
                   : 'bg-white/50 hover:bg-white/75'
               }`}
               disabled={isAnimating}
@@ -199,7 +199,7 @@ const ProductCarausel = ({ products = [] }) => {
         {/* Progress Bar */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
           <div 
-            className="h-full bg-blue-400 transition-all duration-500 ease-linear"
+            className="h-full bg-purple-400 transition-all duration-500 ease-linear"
             style={{ width: `${((currentIndex + 1) / products.length) * 100}%` }}
           />
         </div>

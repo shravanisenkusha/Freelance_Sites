@@ -18,7 +18,7 @@ const ProductCard = ({ product, showImage = true, showDescription = true, showPr
         <div className="flex items-start justify-between mb-2">
           <h3 className="text-xl font-semibold text-gray-900">{product.name}</h3>
           {showCategory && (
-            <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium ml-2 flex-shrink-0">
+            <span className="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium ml-2 flex-shrink-0">
               {product.category}
             </span>
           )}
@@ -46,11 +46,11 @@ const ProductCard = ({ product, showImage = true, showDescription = true, showPr
         
         <div className="flex justify-between items-center">
           {showPrice && (
-            <span className="text-blue-600 font-semibold">{product.price}</span>
+            <span className="text-purple-600 font-semibold">{product.price}</span>
           )}
           <Link
             to={`/product/${product.id}`}
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors text-sm font-medium"
+            className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors text-sm font-medium"
           >
             Learn More
           </Link>
