@@ -4,6 +4,7 @@ import { services } from "../data";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import demoImage from "../assets/demo.jpg";
 
 export default function IndividualService() {
   const { id } = useParams();
@@ -88,11 +89,14 @@ export default function IndividualService() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Service Image */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-96 bg-gray-200 flex items-center justify-center">
-                <span className="text-gray-500 text-2xl font-semibold">
-                  {service.name}
-                </span>
-              </div>
+              <img 
+                src={service.image || demoImage} 
+                alt={service.name}
+                className="h-96 w-full object-cover"
+                onError={(e) => {
+                  e.target.src = demoImage;
+                }}
+              />
             </div>
 
             {/* Service Information */}
@@ -222,11 +226,14 @@ export default function IndividualService() {
                     key={relatedService.id}
                     className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                   >
-                    <div className="h-48 bg-gray-200 flex items-center justify-center">
-                      <span className="text-gray-500 text-lg">
-                        {relatedService.name}
-                      </span>
-                    </div>
+                    <img 
+                      src={relatedService.image || demoImage} 
+                      alt={relatedService.name}
+                      className="h-48 w-full object-cover"
+                      onError={(e) => {
+                        e.target.src = demoImage;
+                      }}
+                    />
                     <div className="p-6">
                       <h3 className="text-xl font-semibold text-gray-900 mb-2">
                         {relatedService.name}
