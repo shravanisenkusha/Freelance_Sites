@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { services } from "../data";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -8,6 +8,7 @@ import demoImage from "../assets/demo.jpg";
 
 export default function IndividualService() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   // Find the service by ID
   const service = services.find((s) => s.id === parseInt(id));
@@ -41,58 +42,14 @@ export default function IndividualService() {
       {/* Service Details */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <nav className="flex mb-8" aria-label="Breadcrumb">
-            <ol className="inline-flex items-center space-x-1 md:space-x-3">
-              <li className="inline-flex items-center">
-                <Link to="/" className="text-gray-700 hover:text-blue-600">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <div className="flex items-center">
-                  <svg
-                    className="w-6 h-6 text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="ml-1 text-gray-500 md:ml-2">Services</span>
-                </div>
-              </li>
-              <li aria-current="page">
-                <div className="flex items-center">
-                  <svg
-                    className="w-6 h-6 text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="ml-1 text-gray-500 md:ml-2">
-                    {service.name}
-                  </span>
-                </div>
-              </li>
-            </ol>
-          </nav>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+  
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Service Image */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img 
-                src={service.image || demoImage} 
+            <div className="bg-white rounded-lg shadow-md overflow-hidden flex items-center justify-center h-96 mx-auto">
+              <img
+                src={service.image || demoImage}
                 alt={service.name}
-                className="h-96 w-full object-cover"
+                className="max-h-full max-w-full object-contain mx-auto"
                 onError={(e) => {
                   e.target.src = demoImage;
                 }}
@@ -150,10 +107,13 @@ export default function IndividualService() {
 
               {/* Call to Action */}
               <div className="space-y-4">
-                <button className="w-full bg-green-600 text-white py-4 px-6 rounded-md hover:bg-green-700 transition-colors font-medium text-lg">
+                {/* <button className="w-full bg-green-600 text-white py-4 px-6 rounded-md hover:bg-green-700 transition-colors font-medium text-lg">
                   Get Quote
-                </button>
-                <button className="w-full border border-green-600 text-green-600 py-4 px-6 rounded-md hover:bg-green-50 transition-colors font-medium">
+                </button> */}
+                <button
+                  className="w-full border border-green-600 text-green-600 py-4 px-6 rounded-md hover:bg-green-50 transition-colors font-medium"
+                  onClick={() => navigate('/contact')}
+                >
                   Schedule Consultation
                 </button>
               </div>
@@ -226,8 +186,8 @@ export default function IndividualService() {
                     key={relatedService.id}
                     className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                   >
-                    <img 
-                      src={relatedService.image || demoImage} 
+                    <img
+                      src={relatedService.image || demoImage}
                       alt={relatedService.name}
                       className="h-48 w-full object-cover"
                       onError={(e) => {
