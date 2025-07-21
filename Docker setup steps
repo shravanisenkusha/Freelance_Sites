@@ -28,6 +28,6 @@ CMD ["nginx", "-g", "daemon off;"]
 
 3) once setup is done or want to push into existing container execute the commands in terminal 
 
-3.1) docker build -t senkusha-website 
-3.2) docker tag senkusha-website asia-south1-docker.pkg.dev/pro-creek-463405-m0/senkusha-website/senkusha-website:latest
-3.3) docker push senkusha-website asia-south1-docker.pkg.dev/pro-creek-463405-m0/senkusha-website/senkusha-website:latest
+3.1) docker build -t senkusha-website .
+3.2) docker tag senkusha-website asia-south1-docker.pkg.dev/pro-creek-463405-m0/senkusha-website/senkusha-website:tag_name
+3.3) docker push senkusha-website asia-south1-docker.pkg.dev/pro-creek-463405-m0/senkusha-website/senkusha-website:tag_name

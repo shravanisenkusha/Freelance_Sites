@@ -68,7 +68,7 @@ const ProductCarausel = ({ products = [] }) => {
               key={index}
               className="w-full flex-shrink-0 relative"
             >
-              <div className="relative h-96 md:h-[500px] overflow-hidden">
+              <div className="relative h-72 sm:h-96 md:h-[500px] overflow-hidden">
                 {/* Background Image - Using demo image for all slides */}
                 <div className="absolute inset-0">
                   <img 
@@ -82,77 +82,77 @@ const ProductCarausel = ({ products = [] }) => {
                   
                   {/* Additional overlay elements for visual appeal */}
                   <div className="absolute inset-0">
-                    <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400/20 rounded-full blur-xl"></div>
-                    <div className="absolute bottom-20 right-20 w-24 h-24 bg-indigo-400/20 rounded-full blur-xl"></div>
-                    <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-purple-400/20 rounded-full blur-xl"></div>
+                    <div className="absolute top-6 left-6 w-20 h-20 sm:top-10 sm:left-10 sm:w-32 sm:h-32 bg-blue-400/20 rounded-full blur-xl"></div>
+                    <div className="absolute bottom-10 right-10 w-16 h-16 sm:bottom-20 sm:right-20 sm:w-24 sm:h-24 bg-indigo-400/20 rounded-full blur-xl"></div>
+                    <div className="absolute top-1/2 left-1/4 w-8 h-8 sm:w-16 sm:h-16 bg-purple-400/20 rounded-full blur-xl"></div>
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="relative z-10 h-full flex items-center">
-                  <div className="container mx-auto px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                  <div className="container mx-auto px-2 sm:px-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-center">
                       {/* Text Content */}
-                      <div className="text-white space-y-6">
+                      <div className="text-white space-y-4 sm:space-y-6">
                         {/* Product Category Badge */}
-                        <div className="inline-flex items-center px-4 py-2 bg-purple-500/30 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-purple-400/50 mb-6 animate-fade-in">
+                        <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-purple-500/30 backdrop-blur-sm rounded-full text-xs sm:text-sm font-medium text-white border border-purple-400/50 mb-4 sm:mb-6 animate-fade-in">
                           <Zap className="w-4 h-4 mr-2" />
                           {product.category}
                         </div>
                         
                         {/* Product Title */}
-                        <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-4 animate-slide-up">
+                        <h2 className="text-2xl sm:text-4xl md:text-6xl font-bold text-white leading-tight mb-2 sm:mb-4 animate-slide-up">
                           {product.name}
                         </h2>
                         
                         {/* Product Description */}
-                        <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-6 max-w-lg animate-slide-up" style={{ animationDelay: '0.2s' }}>
+                        <p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed mb-4 sm:mb-6 max-w-lg animate-slide-up" style={{ animationDelay: '0.2s' }}>
                           {product.description}
                         </p>
                         
                         {/* Product Features Preview */}
-                        <div className="space-y-3 mb-6 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+                        <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6 animate-slide-up" style={{ animationDelay: '0.4s' }}>
                           {product.features.slice(0, 3).map((feature, idx) => (
-                            <div key={idx} className="flex items-center space-x-3">
+                            <div key={idx} className="flex items-center space-x-2 sm:space-x-3">
                               <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                              <span className="text-white/80 text-sm">{feature}</span>
+                              <span className="text-white/80 text-xs sm:text-sm">{feature}</span>
                             </div>
                           ))}
                         </div>
                         
                         {/* Price and CTA */}
-                        <div className="flex items-center justify-between animate-slide-up" style={{ animationDelay: '0.6s' }}>
-                          <div className="flex items-center space-x-4">
-                            <span className="text-3xl font-bold text-purple-300">{product.price}</span>
+                        <div className="flex flex-col sm:flex-row items-center justify-between animate-slide-up gap-2 sm:gap-0" style={{ animationDelay: '0.6s' }}>
+                          <div className="flex items-center space-x-2 sm:space-x-4">
+                            <span className="text-xl sm:text-3xl font-bold text-purple-300">{product.price}</span>
                             <div className="flex items-center space-x-1">
-                              <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                              <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                              <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                              <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                              <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                              <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" />
+                              <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" />
+                              <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" />
+                              <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" />
+                              <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" />
                             </div>
                           </div>
-                          <PillButton className="text-white border-white">
+                          <PillButton className="text-white border-white px-4 py-2 text-xs sm:text-base">
                             Get Started
                           </PillButton>
                         </div>
                       </div>
 
                       {/* Product Visual */}
-                      <div className="flex justify-center lg:justify-end">
+                      <div className="flex justify-center lg:justify-end mt-4 lg:mt-0">
                         <div className="relative">
                           {/* Product Image */}
-                          <div className="w-48 h-48 md:w-64 md:h-64 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center animate-float border border-white/30 overflow-hidden">
+                          <div className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center animate-float border border-white/30 overflow-hidden">
                             <img 
                               src={product.image} 
                               alt={product.name}
-                              className="w-full h-full object-contain p-4"
+                              className="w-full h-full object-contain p-2 sm:p-4"
                             />
                           </div>
                           
                           {/* Floating elements */}
-                          <div className="absolute -top-4 -right-4 w-8 h-8 bg-purple-400 rounded-full animate-pulse"></div>
-                          <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-indigo-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                          <div className="absolute -top-2 -right-2 w-4 h-4 sm:-top-4 sm:-right-4 sm:w-8 sm:h-8 bg-purple-400 rounded-full animate-pulse"></div>
+                          <div className="absolute -bottom-2 -left-2 w-3 h-3 sm:-bottom-4 sm:-left-4 sm:w-6 sm:h-6 bg-indigo-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
                         </div>
                       </div>
                     </div>

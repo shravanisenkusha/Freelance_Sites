@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { MessageSquare, X } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -9,26 +8,27 @@ export default function ContactUs() {
     name: "",
     email: "",
     subject: "",
-    message: ""
+    message: "",
   });
-
   const [showChatBox, setShowChatBox] = useState(false);
   const [faqHistory, setFaqHistory] = useState([]);
   const [customQuestion, setCustomQuestion] = useState("");
 
   const answers = {
-    "What kind of data solutions do you offer?": "We offer end-to-end solutions including data integration, ETL pipelines, analytics dashboards, and cloud data warehousing.",
-    "Can you help automate our data workflows?": "Absolutely! We specialize in automating data ingestion, transformation, and reporting workflows using Python, Airflow, and other tools.",
-    "Do you provide custom dashboards or reporting tools?": "Yes, we create custom dashboards using tools like Power BI, Tableau, and custom web-based interfaces.",
-    "How do you ensure data security and compliance?": "We follow industry best practices including encryption, access control, audit trails, and compliance with GDPR and other standards.",
-    "Can you integrate with our existing systems?": "Yes! We integrate with ERPs, CRMs, APIs, databases, and cloud platforms like AWS, Azure, and GCP."
+    "What kind of data solutions do you offer?":
+      "We offer end-to-end solutions including data integration, ETL pipelines, analytics dashboards, and cloud data warehousing.",
+    "Can you help automate our data workflows?":
+      "Absolutely! We specialize in automating data ingestion, transformation, and reporting workflows using Python, Airflow, and other tools.",
+    "Do you provide custom dashboards or reporting tools?":
+      "Yes, we create custom dashboards using tools like Power BI, Tableau, and custom web-based interfaces.",
+    "How do you ensure data security and compliance?":
+      "We follow industry best practices including encryption, access control, audit trails, and compliance with GDPR and other standards.",
+    "Can you integrate with our existing systems?":
+      "Yes! We integrate with ERPs, CRMs, APIs, databases, and cloud platforms like AWS, Azure, and GCP.",
   };
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e) => {
@@ -39,8 +39,7 @@ export default function ContactUs() {
   };
 
   const handleQuestionClick = (question) => {
-    const answer = answers[question];
-    setFaqHistory((prev) => [...prev, { question, answer }]);
+    setFaqHistory((prev) => [...prev, { question, answer: answers[question] }]);
   };
 
   const handleCustomSubmit = (e) => {
@@ -50,196 +49,192 @@ export default function ContactUs() {
         ...prev,
         {
           question: customQuestion,
-          answer: "Thanks for your question! Our team will get back to you shortly."
-        }
+          answer:
+            "Thanks for your question! Our team will get back to you shortly.",
+        },
       ]);
       setCustomQuestion("");
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 relative">
+    <div className="min-h-screen bg-gray-50 relative flex flex-col">
       <Navbar />
-      {/* Contact Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+
+      <section className="flex-grow py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-10">
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               "Have questions? We're just a message away!"
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid gap-8 lg:grid-cols-2">
             {/* Contact Form */}
-            <div className="bg-white rounded-lg shadow-md p-8">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Send us a message</h2>
+            <div className="bg-white rounded-lg shadow-md p-6 sm:p-8">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+                Send us a message
+              </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
+                {["name", "email", "subject"].map((field) => (
+                  <div key={field}>
+                    <label
+                      htmlFor={field}
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      {field === "name"
+                        ? "Full Name"
+                        : field.charAt(0).toUpperCase() + field.slice(1)}
+                    </label>
+                    <input
+                      type={field === "email" ? "email" : "text"}
+                      id={field}
+                      name={field}
+                      value={formData[field]}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                      placeholder={`Enter your ${field}`}
+                    />
+                  </div>
+                ))}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter your full name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter your email address"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter subject"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Message
                   </label>
                   <textarea
                     id="message"
                     name="message"
+                    rows={6}
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     placeholder="Enter your message"
                   />
                 </div>
-
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition-colors font-medium"
+                  className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition"
                 >
                   Send Message
                 </button>
               </form>
             </div>
 
-            {/* Contact Information */}
+            {/* Contact Info */}
             <div className="space-y-8">
-              <div className="bg-white rounded-lg shadow-md p-8">
-                <h2 className="text-2xl font-semibold text-gray-900 mb-6">Get in Touch</h2>
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                      <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium text-gray-900">Phone</h3>
-                      <p className="text-gray-600">+1 (555) 123-4567</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                      <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium text-gray-900">Email</h3>
-                      <p className="text-gray-600">info@senkusha.com</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                      <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium text-gray-900">Address</h3>
-                      <p className="text-gray-600">
-                        123 Business Street<br />
-                        Tech City, TC 12345<br />
-                        United States
-                      </p>
-                    </div>
+              {[
+                {
+                  title: "Get in Touch",
+                  items: [
+                    {
+                      iconPath: "M3 5h12M9 3v2m0 4v8",
+                      label: "Phone",
+                      value: "+1 (555) 123-4567",
+                    },
+                    {
+                      iconPath: "M3 8l7.5 5L18 8",
+                      label: "Email",
+                      value: "info@senkusha.com",
+                    },
+                    {
+                      iconPath: "M17.657 16.657L13 12.828l-4.657 3.829",
+                      label: "Address",
+                      value:
+                        "123 Business Street\nTech City, TC 12345\nUnited States",
+                    },
+                  ],
+                },
+                {
+                  title: "Business Hours",
+                  items: [
+                    { label: "Monday - Friday", value: "9:00 AM - 6:00 PM" },
+                    { label: "Saturday", value: "10:00 AM - 4:00 PM" },
+                    { label: "Sunday", value: "Closed" },
+                  ],
+                },
+              ].map((section, i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-lg shadow-md p-6 sm:p-8"
+                >
+                  <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                    {section.title}
+                  </h2>
+                  <div className="space-y-5">
+                    {section.items.map((item, idx) => (
+                      <div
+                        key={idx}
+                        className={`flex ${
+                          item.iconPath ? "items-start" : "justify-between"
+                        } space-x-4`}
+                      >
+                        {item.iconPath && (
+                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                            <svg
+                              className="w-5 h-5 text-blue-600"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d={item.iconPath}
+                              />
+                            </svg>
+                          </div>
+                        )}
+                        <div>
+                          <h3 className="text-lg font-medium text-gray-900">
+                            {item.label}
+                          </h3>
+                          <p className="text-gray-600 whitespace-pre-line">
+                            {item.value}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
-
-              <div className="bg-white rounded-lg shadow-md p-8">
-                <h2 className="text-2xl font-semibold text-gray-900 mb-6">Business Hours</h2>
-                <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Monday - Friday</span>
-                    <span className="font-medium">9:00 AM - 6:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Saturday</span>
-                    <span className="font-medium">10:00 AM - 4:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Sunday</span>
-                    <span className="font-medium">Closed</span>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
+
       <Footer />
 
-      
-
-      {/* Floating Chatbot */}
+      {/* Chat Button */}
       <button
         onClick={() => setShowChatBox((prev) => !prev)}
-        className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-xl hover:bg-blue-700 transition duration-300"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-blue-600 text-white p-4 rounded-full shadow-xl hover:bg-blue-700 transition duration-300 z-50"
         aria-label="Chat with Us"
       >
-        {showChatBox ? <X className="w-6 h-6" /> : <MessageSquare className="w-6 h-6" />}
+        {showChatBox ? (
+          <X className="w-6 h-6" />
+        ) : (
+          <MessageSquare className="w-6 h-6" />
+        )}
       </button>
 
+      {/* Chat Box */}
       {showChatBox && (
-        <div className="fixed bottom-24 right-6 w-80 max-h-[500px] bg-white shadow-2xl border border-gray-200 rounded-xl p-4 z-50 overflow-y-auto">
+        <div className="fixed bottom-20 right-4 sm:right-6 w-[95%] sm:w-80 max-h-[500px] bg-white shadow-2xl border border-gray-200 rounded-xl p-4 z-50 overflow-y-auto">
           <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center gap-2">
             <MessageSquare className="w-5 h-5 text-blue-600" />
             Chat with Us
           </h3>
           <p className="text-sm text-gray-600 mb-3">Quick Questions:</p>
           <div className="space-y-2 mb-4">
-            {Object.keys(answers).map((q, index) => (
+            {Object.keys(answers).map((q, idx) => (
               <button
-                key={index}
+                key={idx}
                 onClick={() => handleQuestionClick(q)}
                 className="block w-full text-left px-3 py-2 border border-gray-300 rounded-md hover:bg-blue-50 hover:border-blue-400 transition"
               >
@@ -247,14 +242,13 @@ export default function ContactUs() {
               </button>
             ))}
           </div>
-
-          <form onSubmit={handleCustomSubmit} className="mt-2 space-y-2">
+          <form onSubmit={handleCustomSubmit} className="space-y-2 mb-4">
             <input
               type="text"
               placeholder="Type your own question..."
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
               value={customQuestion}
               onChange={(e) => setCustomQuestion(e.target.value)}
+              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
             <button
               type="submit"
@@ -263,12 +257,13 @@ export default function ContactUs() {
               Ask
             </button>
           </form>
-
           {faqHistory.length > 0 && (
-            <div className="border-t pt-2 mt-4">
+            <div className="border-t pt-2">
               {faqHistory.map((item, idx) => (
                 <div key={idx} className="mb-3">
-                  <p className="font-semibold text-blue-700">Q: {item.question}</p>
+                  <p className="font-semibold text-blue-700">
+                    Q: {item.question}
+                  </p>
                   <p className="text-gray-700 text-sm mt-1">A: {item.answer}</p>
                 </div>
               ))}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function Footer() {
   return (
@@ -51,9 +51,17 @@ function Footer() {
       <div className="border-t border-[#285f7a] mt-8 pt-4 text-center text-[#d9e6f2] text-xs">
         <p>© 2025 Senkusha Solutions LLP</p>
         <div>
-          <a href="/privacy" className="hover:underline">Privacy Policy</a> |{' '}
-          <a href="/terms" className="hover:underline">Terms</a> |{' '}
-          <a href="/cookies" className="hover:underline">Cookies</a>
+          <a href="/privacy" className="hover:underline">
+            Privacy Policy
+          </a>{" "}
+          |{" "}
+          <a href="/terms" className="hover:underline">
+            Terms
+          </a>{" "}
+          |{" "}
+          <a href="/cookies" className="hover:underline">
+            Cookies
+          </a>
         </div>
       </div>
     </footer>
