@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/Freelance_Sites/static/css/main.02408cff.css",
+    "main.js": "/Freelance_Sites/static/js/main.6e16af01.js",
+    "static/media/3.png": "/Freelance_Sites/static/media/3.0c3099fc1705b4c6fe45.png",
+    "static/media/mentor2.jpg": "/Freelance_Sites/static/media/mentor2.dbd3b6c094ae43345b6b.jpg",
+    "static/media/mentor5.jpg": "/Freelance_Sites/static/media/mentor5.349e187101f36971dc5c.jpg",
+    "static/media/mentor3.jpg": "/Freelance_Sites/static/media/mentor3.b3f50e1295691a66f37b.jpg",
+    "static/media/mentor4.jpg": "/Freelance_Sites/static/media/mentor4.b586cb87c3b5809e9555.jpg",
+    "static/media/mentor1.jpg": "/Freelance_Sites/static/media/mentor1.ba3a0a26f2119d3da7f5.jpg",
+    "static/media/phone.png": "/Freelance_Sites/static/media/phone.4581abe71588afea7858.png",
+    "static/media/2.png": "/Freelance_Sites/static/media/2.74c754d7249eb27de333.png",
+    "static/media/demo.jpg": "/Freelance_Sites/static/media/demo.488e76bf4b5d07bb233b.jpg",
+    "static/media/Nutrigen.png": "/Freelance_Sites/static/media/Nutrigen.5897ce7e9d79d9aba418.png",
+    "static/media/user.jpg": "/Freelance_Sites/static/media/user.6147d89b9bb306b88dde.jpg",
+    "static/media/Resume.png": "/Freelance_Sites/static/media/Resume.983bc50c4775b4d1f71a.png",
+    "static/media/1.png": "/Freelance_Sites/static/media/1.889cff65b002859cd877.png",
+    "index.html": "/Freelance_Sites/index.html",
+    "main.02408cff.css.map": "/Freelance_Sites/static/css/main.02408cff.css.map",
+    "main.6e16af01.js.map": "/Freelance_Sites/static/js/main.6e16af01.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.02408cff.css",
+    "static/js/main.6e16af01.js"
+  ]
+}
