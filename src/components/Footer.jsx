@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="bg-[#FFFFFF] text-white text-sm py-10 px-5">
+    <footer className="bg-gradient-to-r from-purple-600/85 to-indigo-700/85 text-white text-sm py-10 px-5">
       <div className="max-w-6xl mx-auto flex flex-wrap justify-between">
         {/* Column 1: Company */}
         <div className="flex flex-col min-w-[150px] mb-5 gap-2">
